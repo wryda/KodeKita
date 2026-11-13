@@ -1,6 +1,6 @@
 /* KodeKita - penyesuaian tampilan HP dan tablet. Dimuat paling akhir. */
 
-html { -webkit-text-size-adjust: 100%; }
+html { webkit-text-size-adjust: 100%; }
 body { overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
 pre, textarea, iframe { max-width: 100%; }
 

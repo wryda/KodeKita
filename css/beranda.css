@@ -275,3 +275,270 @@ body[data-auth="masuk"] .cta-daftar { display: none; }
     .bagian, .cta { margin-top: 48px; }
 }
 
+
+/* =====================================================
+   ANIMASI TAMBAHAN
+   ===================================================== */
+
+/* --- A. Kartu topik: kilau + kisi bergeser saat disorot --- */
+/* ::before sudah dipakai garis aksen di atas, jadi efeknya lewat ::after */
+
+.kartu > * { position: relative; z-index: 1; }
+
+.kartu::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .35s;
+    background:
+        radial-gradient(circle at 60% 0%, color-mix(in srgb, var(--aksen) 22%, transparent), transparent 55%),
+        linear-gradient(to right, color-mix(in srgb, var(--aksen) 14%, transparent) 1px, transparent 1px),
+        linear-gradient(to bottom, color-mix(in srgb, var(--aksen) 14%, transparent) 1px, transparent 1px);
+    background-size: auto, 32px 32px, 32px 32px;
+    -webkit-mask-image: radial-gradient(circle at 60% 5%, #000 0%, #000 15%, transparent 65%);
+    mask-image: radial-gradient(circle at 60% 5%, #000 0%, #000 15%, transparent 65%);
+}
+
+.kartu:hover::after,
+.kartu:focus-within::after {
+    opacity: 1;
+    animation: kisi-geser 6s linear infinite;
+}
+
+@keyframes kisi-geser {
+    to { background-position: 0 0, 32px 32px, 32px 32px; }
+}
+
+.kartu:hover .logo-bahasa { animation: goyang .6s ease; }
+
+@keyframes goyang {
+    0%, 100% { transform: rotate(0); }
+    25%      { transform: rotate(-8deg) scale(1.06); }
+    60%      { transform: rotate(6deg) scale(1.06); }
+}
+
+/* --- B. Animasi orang sedang coding di hero --- */
+
+.hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 380px);
+    gap: clamp(20px, 4vw, 48px);
+    align-items: center;
+}
+
+.hero-anim svg { display: block; width: 100%; height: auto; }
+
+@media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-anim { max-width: 320px; margin: 0 auto; }
+}
+
+/* baris kode "diketik" satu per satu lalu diulang
+   (jeda tiap baris ditulis inline di elemen SVG-nya) */
+.kode-baris {
+    transform-box: fill-box;
+    transform-origin: left center;
+    animation: ketik 7s steps(12, end) infinite;
+}
+
+@keyframes ketik {
+    0%        { transform: scaleX(0); }
+    12%, 88%  { transform: scaleX(1); }
+    100%      { transform: scaleX(0); }
+}
+
+.kursor { animation: kedip .8s steps(1) infinite; }
+@keyframes kedip { 50% { opacity: 0; } }
+
+/* lengan mengetik */
+.lengan {
+    transform-origin: 118px 180px;
+    animation: tik .35s ease-in-out infinite alternate;
+}
+.lengan.dua { animation-delay: .17s; }
+
+@keyframes tik {
+    from { transform: rotate(-4deg); }
+    to   { transform: rotate(4deg); }
+}
+
+/* kepala mengangguk pelan */
+.kepala { animation: angguk 2.4s ease-in-out infinite; }
+
+@keyframes angguk {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(2px); }
+}
+
+/* simbol kode melayang */
+.simbol { animation: melayang 4s ease-in-out infinite; }
+
+@keyframes melayang {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-10px); }
+}
+
+/* uap kopi */
+.uap { animation: naik 2.4s ease-out infinite; }
+
+@keyframes naik {
+    0%   { transform: translateY(0);     opacity: 0; }
+    30%  { opacity: .7; }
+    100% { transform: translateY(-12px); opacity: 0; }
+}
+
+/* hormati pengguna yang mematikan animasi di perangkatnya */
+@media (prefers-reduced-motion: reduce) {
+    .kartu:hover::after, .kartu:focus-within::after,
+    .kartu:hover .logo-bahasa,
+    .kode-baris, .kursor, .lengan, .kepala, .simbol, .uap {
+        animation: none;
+    }
+}
+/* =====================================================
+   VIDEO LATAR HERO
+   ===================================================== */
+
+.hero { position: relative; overflow: hidden; isolation: isolate; }
+
+/* semua isi hero berada di atas video */
+.hero > :not(.hero-video) { position: relative; z-index: 1; }
+
+.hero-video {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: url("../assets/video/coding-poster.jpg") center / cover no-repeat;
+}
+
+.hero-video video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* lapisan putih supaya teks tetap terbaca; video makin terlihat di sisi kanan */
+.hero-video::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(90deg, rgba(255, 255, 255, .95) 0%, rgba(255, 255, 255, .86) 50%, rgba(255, 255, 255, .55) 100%),
+        radial-gradient(520px 300px at 100% 0%, rgba(245, 220, 85, .25), transparent 65%);
+}
+
+/* di HP: pakai gambar poster saja supaya hemat kuota dan baterai */
+@media (max-width: 600px) {
+    .hero-video video { display: none; }
+}
+
+
+/* =====================================================
+   ANIMASI LAINNYA
+   ===================================================== */
+
+/* --- 1. Isi hero muncul bergantian saat halaman dibuka --- */
+
+.hero-teks > * { animation: naik-masuk .7s cubic-bezier(.2, .7, .2, 1) both; }
+.hero-teks > :nth-child(2) { animation-delay: .08s; }
+.hero-teks > :nth-child(3) { animation-delay: .16s; }
+.hero-teks > :nth-child(4) { animation-delay: .24s; }
+.hero-teks > :nth-child(5) { animation-delay: .32s; }
+
+.hero-anim { animation: zoom-masuk .9s .25s cubic-bezier(.2, .7, .2, 1) both; }
+
+@keyframes naik-masuk { from { opacity: 0; translate: 0 24px; } }
+@keyframes zoom-masuk { from { opacity: 0; scale: .92; translate: 24px 0; } }
+
+/* --- 2. Sorotan kuning di judul "ditulis" dari kiri ke kanan --- */
+
+.sorot {
+    background-repeat: no-repeat;
+    background-size: 0 100%;
+    animation: sorot-tulis .9s .6s ease forwards;
+}
+
+@keyframes sorot-tulis { to { background-size: 100% 100%; } }
+
+/* --- 3. Kilau lewat di atas tombol hero dan ajakan --- */
+
+.hero .btn, .cta .btn { position: relative; overflow: hidden; }
+
+.hero .btn::after, .cta .btn::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 -60%;
+    width: 40%;
+    background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .45), transparent);
+    transform: skewX(-20deg);
+    pointer-events: none;
+}
+
+.hero .btn:hover::after, .cta .btn:hover::after {
+    animation: kilau .7s ease;
+}
+
+@keyframes kilau { to { left: 130%; } }
+
+/* --- 4. Panel fitur: terangkat dan ikon kotaknya berputar --- */
+
+.panel {
+    transition: translate .2s, box-shadow .2s, border-color .2s;
+}
+
+.panel:hover {
+    translate: 0 -3px;
+    border-color: var(--utama);
+    box-shadow: var(--bayangan);
+}
+
+.panel h3::before { transition: rotate .35s, scale .35s; }
+.panel:hover h3::before { rotate: 135deg; scale: 1.25; }
+
+/* --- 5. Jawaban FAQ meluncur turun saat dibuka --- */
+
+.faq details[open] p { animation: buka-jawaban .35s ease; }
+
+@keyframes buka-jawaban {
+    from { opacity: 0; translate: 0 -8px; }
+}
+
+/* --- 6. Muncul saat di-scroll (scroll-driven animation) ---
+   Dibungkus @supports: di peramban yang belum mendukung, elemen tampil biasa. */
+
+@supports (animation-timeline: view()) {
+    .statistik, .demo, .faq details, .cta {
+        animation: muncul-naik linear both;
+        animation-timeline: view();
+        animation-range: entry 5% cover 28%;
+    }
+
+    .kartu, .panel {
+        animation: muncul-skala linear both;
+        animation-timeline: view();
+        animation-range: entry 5% cover 28%;
+    }
+
+    @keyframes muncul-naik  { from { opacity: 0; translate: 0 36px; } }
+    @keyframes muncul-skala { from { opacity: 0; scale: .94; } }
+}
+
+/* --- Hormati pengguna yang mematikan animasi --- */
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-video video { display: none; }
+
+    .hero-teks > *, .hero-anim, .sorot,
+    .hero .btn:hover::after, .cta .btn:hover::after,
+    .faq details[open] p,
+    .statistik, .demo, .faq details, .cta, .kartu, .panel {
+        animation: none;
+    }
+
+    .sorot { background-size: 100% 100%; }
+}
