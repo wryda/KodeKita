@@ -1,0 +1,94 @@
+<section id="v-profil" hidden>
+    <h2>Profil Pengguna</h2>
+    <p>Kelola informasi dan keamanan akun KodeKita.</p>
+
+    <div class="profil-container">
+
+        <!-- Informasi profil -->
+        <div class="kotak profil-kartu">
+            <div class="profil-foto">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+                </svg>
+            </div>
+
+            <h3 id="profil-nama">Nama Pengguna</h3>
+            <p id="profil-email">email@example.com</p>
+            <span class="profil-status" id="profil-status">Anggota KodeKita</span>
+
+            <div class="profil-info" id="profil-info">
+                <div class="profil-info-item">
+                    <small>Materi dibaca</small>
+                    <strong id="profil-materi">0</strong>
+                </div>
+                <div class="profil-info-item">
+                    <small>Skor kuis</small>
+                    <strong id="profil-kuis">–</strong>
+                </div>
+                <div class="profil-info-item">
+                    <small>Tantangan</small>
+                    <strong id="profil-tantangan">0</strong>
+                </div>
+            </div>
+
+            <div class="baris">
+                <button class="btn u" type="button" id="btn-edit-profil">Edit Profil</button>
+                <button class="btn" type="button" id="profil-masuk" data-buka="masuk" hidden>Masuk</button>
+            </div>
+        </div>
+
+        <!-- Keamanan akun -->
+        <div class="kotak profil-keamanan" id="profil-keamanan">
+            <h3>Keamanan Akun</h3>
+            <p class="catatan">Gunakan minimal 8 karakter dengan kombinasi huruf dan angka.</p>
+
+            <form id="fm-password" novalidate>
+                <div class="medan">
+                    <label for="profil-sandi-lama">Kata sandi lama</label>
+                    <input type="password" id="profil-sandi-lama" autocomplete="current-password" required>
+                </div>
+
+                <div class="medan">
+                    <label for="profil-sandi-baru">Kata sandi baru</label>
+                    <input type="password" id="profil-sandi-baru" autocomplete="new-password" required>
+                </div>
+
+                <div class="medan">
+                    <label for="profil-sandi-ulang">Ulangi kata sandi baru</label>
+                    <input type="password" id="profil-sandi-ulang" autocomplete="new-password" required>
+                </div>
+
+                <p class="err" id="profil-password-error" role="alert"></p>
+
+                <button class="btn" type="submit">Ubah Kata Sandi</button>
+            </form>
+        </div>
+
+        <!-- Form edit profil (muncul saat Edit Profil ditekan) -->
+        <div class="kotak" id="form-profil" hidden>
+            <h3>Edit Informasi Profil</h3>
+
+            <form id="fm-profil" novalidate>
+                <div class="medan">
+                    <label for="profil-input-nama">Nama lengkap</label>
+                    <input type="text" id="profil-input-nama" name="nama" autocomplete="name" required>
+                </div>
+
+                <div class="medan">
+                    <label for="profil-input-email">Email</label>
+                    <input type="email" id="profil-input-email" name="email" autocomplete="email" required>
+                </div>
+
+                <p class="err" id="profil-error" role="alert"></p>
+
+                <div class="baris">
+                    <button class="btn" type="submit">Simpan Perubahan</button>
+                    <button class="btn secondary" type="button" id="btn-batal-profil">Batal</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</section>

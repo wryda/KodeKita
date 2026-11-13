@@ -1,0 +1,91 @@
+/* KodeKita - Profil. */
+
+.profil-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.profil-kartu {
+    text-align: center;
+}
+
+.profil-foto {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--garis);
+    border-radius: 50%;
+    background: var(--dasar);
+    color: var(--utama);
+}
+
+.profil-foto svg {
+    width: 46px;
+    height: 46px;
+}
+
+.profil-kartu h3 {
+    margin-bottom: 4px;
+    overflow-wrap: anywhere;
+}
+
+.profil-kartu > p {
+    margin-bottom: 12px;
+    color: var(--lembut);
+    overflow-wrap: anywhere;
+}
+
+.profil-status {
+    display: inline-block;
+    padding: 4px 12px;
+    border: 1px solid var(--garis);
+    border-radius: 999px;
+    background: var(--dasar);
+    color: var(--utama);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.profil-info {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin: 20px 0 0;
+}
+
+.profil-info-item {
+    padding: 12px 8px;
+    border: 1px solid var(--garis);
+    border-radius: var(--radius-kecil);
+    background: var(--dasar);
+}
+
+.profil-info-item small {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--lembut);
+    font-size: 12px;
+}
+
+.profil-info-item strong {
+    font-size: 18px;
+}
+
+.profil-kartu .baris {
+    justify-content: center;
+}
+
+#form-profil {
+    grid-column: 1 / -1;
+}
+
+.kotak h3 {
+    margin-bottom: 8px;
+}
+

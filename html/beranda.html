@@ -1,0 +1,217 @@
+<section id="v-beranda">
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-teks">
+      <span class="label-hero">Belajar web untuk SMA/SMK</span>
+
+      <h1>Ubah <span class="sorot">satu baris kode</span>, lihat halamannya berubah.</h1>
+
+      <p class="lead">KodeKita menemani siswa SMA/SMK belajar HTML, CSS, JavaScript, PHP, dan SQL lewat praktik langsung.</p>
+
+      <div class="baris">
+        <a class="btn" href="#materi">Mulai dari materi HTML</a>
+        <button class="btn u" type="button" id="ke-pg">Buka di playground penuh</button>
+      </div>
+
+      <ul class="poin">
+        <li>Tanpa daftar</li>
+        <li>Gratis</li>
+        <li>Langsung praktik</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Angka ringkas -->
+  <div class="statistik" aria-label="Isi KodeKita">
+    <div>
+      <strong data-hitung="topik">5</strong>
+      <span>Bahasa</span>
+    </div>
+    <div>
+      <strong data-hitung="materi">16</strong>
+      <span>Bab materi</span>
+    </div>
+    <div>
+      <strong data-hitung="kuis">13</strong>
+      <span>Soal kuis</span>
+    </div>
+    <div>
+      <strong data-hitung="tantangan">3</strong>
+      <span>Tantangan coding</span>
+    </div>
+  </div>
+
+  <!-- Playground mini -->
+  <div class="bagian demo">
+    <h2>Coba langsung</h2>
+    <p class="pengantar">Ubah kode di sebelah kiri, hasilnya langsung tampil di sebelah kanan.</p>
+
+    <ul class="saran" aria-label="Hal yang bisa dicoba">
+      <li>Ganti teks di <code>index.html</code></li>
+      <li>Ubah warna <code>#0E6B63</code> di <code>style.css</code></li>
+      <li>Klik tombol <strong>Sapa saya</strong></li>
+    </ul>
+
+    <div id="pg-hero"></div>
+  </div>
+
+  <!-- Topik -->
+  <div class="bagian">
+    <h2>Lima bahasa, satu alur belajar</h2>
+    <p class="pengantar">Mulai dari kerangka halaman, lanjut ke tampilan dan interaksi, lalu simpan dan olah data di server.</p>
+
+    <div class="grid-3 topik">
+      <article class="kartu html">
+        <div class="kepala-kartu">
+          <img class="logo-bahasa" src="assets/logo/html.svg" alt="Logo HTML" width="44" height="44" />
+          <span class="tag">HTML</span>
+        </div>
+        <h3>Menyusun isi halaman</h3>
+        <p>Kenali kerangka dokumen, teks, dan formulir sebagai dasar semua halaman web.</p>
+        <ul>
+          <li>Struktur dasar dokumen</li>
+          <li>Judul, paragraf, dan tautan</li>
+          <li>Formulir dan input</li>
+        </ul>
+        <a class="tautan-kartu" href="#materi">Buka materi HTML &rarr;</a>
+      </article>
+
+      <article class="kartu css">
+        <div class="kepala-kartu">
+          <img class="logo-bahasa" src="assets/logo/css.svg" alt="Logo CSS" width="44" height="44" />
+          <span class="tag">CSS</span>
+        </div>
+        <h3>Mengatur tampilan</h3>
+        <p>Ubah warna, jarak, dan tata letak supaya halamanmu rapi dan enak dibaca.</p>
+        <ul>
+          <li>Selector dan properti</li>
+          <li>Kotak: margin, padding, border</li>
+          <li>Tata letak dengan flexbox</li>
+        </ul>
+        <a class="tautan-kartu" href="#materi">Buka materi CSS &rarr;</a>
+      </article>
+
+      <article class="kartu js">
+        <div class="kepala-kartu">
+          <img class="logo-bahasa" src="assets/logo/js.svg" alt="Logo JavaScript" width="44" height="44" />
+          <span class="tag">JavaScript</span>
+        </div>
+        <h3>Membuat halaman bereaksi</h3>
+        <p>Tambahkan logika dan interaksi, misalnya tombol yang menjawab saat diklik.</p>
+        <ul>
+          <li>Variabel dan tipe data</li>
+          <li>Fungsi</li>
+          <li>Array dan perulangan</li>
+        </ul>
+        <a class="tautan-kartu" href="#materi">Buka materi JavaScript &rarr;</a>
+      </article>
+
+      <article class="kartu php">
+        <div class="kepala-kartu">
+          <img class="logo-bahasa" src="assets/logo/php.svg" alt="Logo PHP" width="44" height="44" />
+          <span class="tag">PHP</span>
+        </div>
+        <h3>Memproses data di server</h3>
+        <p>Buat halaman dinamis yang membaca isian formulir dan menampilkan hasilnya.</p>
+        <ul>
+          <li>Variabel dan echo</li>
+          <li>Percabangan, array, perulangan</li>
+          <li>Membaca formulir dengan $_POST</li>
+        </ul>
+        <a class="tautan-kartu" href="#materi">Buka materi PHP &rarr;</a>
+      </article>
+
+      <article class="kartu sql">
+        <div class="kepala-kartu">
+          <img class="logo-bahasa" src="assets/logo/sql.svg" alt="Logo SQL" width="44" height="44" />
+          <span class="tag">SQL</span>
+        </div>
+        <h3>Mengelola data di database</h3>
+        <p>Simpan, cari, ubah, dan gabungkan data dalam tabel dengan perintah SQL.</p>
+        <ul>
+          <li>CREATE TABLE dan INSERT</li>
+          <li>SELECT, WHERE, ORDER BY</li>
+          <li>UPDATE, DELETE, dan JOIN</li>
+        </ul>
+        <a class="tautan-kartu" href="#materi">Buka materi SQL &rarr;</a>
+      </article>
+    </div>
+  </div>
+
+  <!-- Fitur -->
+  <div class="bagian">
+    <h2>Yang kamu dapat di KodeKita</h2>
+
+    <div class="fitur">
+      <div class="panel">
+        <h3>Praktik langsung</h3>
+        <p>Editor tiga tab (HTML, CSS, JavaScript) dengan hasil yang tampil otomatis.</p>
+      </div>
+      <div class="panel">
+        <h3>Materi bisa didengarkan</h3>
+        <p>Gunakan fitur suara kalau lebih mudah memahami lewat mendengar.</p>
+      </div>
+      <div class="panel">
+        <h3>Kuis dengan pembahasan</h3>
+        <p>Langsung tahu letak salahnya, tanpa menunggu penilaian.</p>
+      </div>
+      <div class="panel">
+        <h3>Tantangan diperiksa otomatis</h3>
+        <p>Kodemu dijalankan dan diuji, lalu hasilnya ditampilkan.</p>
+      </div>
+      <div class="panel">
+        <h3>Progres tersimpan</h3>
+        <p>Masuk ke akunmu agar materi, skor, dan tantangan yang selesai tercatat.</p>
+      </div>
+      <div class="panel">
+        <h3>Aman dicoba</h3>
+        <p>Kode berjalan di kotak terisolasi, jadi bebas bereksperimen.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pertanyaan umum -->
+  <div class="bagian faq-tata">
+    <div class="faq-judul">
+      <h2>Pertanyaan umum</h2>
+      <p class="pengantar">Hal-hal yang sering ditanyakan sebelum mulai belajar.</p>
+    </div>
+
+    <div class="faq">
+      <details>
+        <summary>Apakah saya harus daftar dulu?</summary>
+        <p>Tidak. Materi, playground, kuis, dan tantangan bisa dipakai tanpa akun. Daftar hanya perlu kalau kamu ingin progresmu tersimpan.</p>
+      </details>
+      <details>
+        <summary>Di mana progres saya disimpan?</summary>
+        <p>Akun dan progres disimpan di peramban perangkat ini. Kalau data peramban dihapus atau kamu pindah perangkat, progres tidak ikut.</p>
+      </details>
+      <details>
+        <summary>Perlu pengetahuan coding sebelumnya?</summary>
+        <p>Tidak perlu. Materi dimulai dari struktur paling dasar, dan setiap bab punya contoh yang bisa langsung dicoba.</p>
+      </details>
+      <details>
+        <summary>Bagaimana kalau jawaban tantangan saya belum benar?</summary>
+        <p>Hasil pengujian menunjukkan bagian yang belum sesuai. Perbaiki kodenya, lalu tekan Periksa jawaban lagi sebanyak yang kamu mau.</p>
+      </details>
+      <details>
+        <summary>Mengapa PHP dan SQL tidak punya playground?</summary>
+        <p>PHP dan SQL berjalan di server dan database, sedangkan playground berjalan di peramban. Pelajari contoh kode beserta hasilnya di materi, lalu praktikkan di komputermu dengan XAMPP.</p>
+      </details>
+    </div>
+  </div>
+
+  <!-- Ajakan -->
+  <div class="cta">
+    <div>
+      <h2>Siap menulis kode pertamamu?</h2>
+      <p>Mulai dari bab pertama, atau langsung coba kuis untuk melihat kemampuanmu.</p>
+    </div>
+
+    <div class="baris">
+      <a class="btn" href="#materi">Mulai belajar</a>
+      <a class="btn u" href="#kuis">Coba kuis</a>
+      <button class="btn u cta-daftar" type="button" data-buka="daftar">Daftar gratis</button>
+    </div>
+  </div>
+</section>

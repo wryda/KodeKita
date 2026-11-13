@@ -1,0 +1,92 @@
+/* KodeKita - Playground (editor + pratinjau). Dipakai beranda, materi, playground, tantangan. */
+
+.pg {
+    --h: 220px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    overflow: hidden;
+    border: 1px solid var(--garis);
+    border-radius: 14px;
+    background: var(--muka);
+    box-shadow: var(--bayangan);
+}
+
+.pg-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 4px;
+    padding: 8px 10px 0;
+    background: #08130f;
+}
+
+.pg-tabs button {
+    padding: 8px 14px;
+    border: 0;
+    border-radius: 8px 8px 0 0;
+    background: transparent;
+    color: #8fb0a5;
+    font: 600 12px var(--mono);
+}
+
+.pg-tabs button:hover { color: #fff; }
+.pg-tabs button[aria-pressed="true"] { background: #0c1916; color: #fff; }
+.pg-tabs .reset { margin: 0 0 6px auto; padding: 4px 10px; border: 1px solid #2c4a42; border-radius: 6px; font-family: inherit; }
+
+.pg-body { display: flex; height: var(--h); background: #0c1916; }
+
+.gut {
+    flex: 0 0 44px;
+    padding: 12px 8px;
+    overflow: hidden;
+    border-right: 1px solid #1d3a33;
+    color: #5f8379;
+    font: 13px/21px var(--mono);
+    text-align: right;
+    white-space: pre;
+    user-select: none;
+}
+
+.pg textarea {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+    height: 100%;
+    padding: 12px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #d9f5e9;
+    font: 13px/21px var(--mono);
+    tab-size: 2;
+    white-space: pre;
+    overflow: auto;
+    resize: none;
+}
+
+.pg textarea:focus-visible { outline-offset: -3px; }
+
+.pg iframe {
+    display: block;
+    width: 100%;
+    height: var(--h);
+    border: 0;
+    border-top: 1px solid var(--garis);
+    background: #fff;
+}
+
+@media (min-width: 900px) {
+    .pg.lebar { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .pg.lebar .pg-tabs { grid-column: 1; }
+    .pg.lebar .pg-body { grid-column: 1; }
+    .pg.lebar iframe {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        height: 100%;
+        border-top: 0;
+        border-left: 1px solid var(--garis);
+    }
+}
+
+#v-playground .catatan { margin-top: 14px; }
+

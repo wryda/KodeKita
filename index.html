@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#EDF2F1">
+    <meta name="description" content="KodeKita adalah media pembelajaran HTML, CSS, JavaScript, PHP, dan SQL untuk siswa SMA/SMK.">
+    <title>KodeKita – Belajar HTML, CSS, JavaScript, PHP, dan SQL</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=JetBrains+Mono&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/beranda.css">
+    <link rel="stylesheet" href="css/playground.css">
+    <link rel="stylesheet" href="css/materi.css">
+    <link rel="stylesheet" href="css/kuis.css">
+    <link rel="stylesheet" href="css/progres.css">
+    <link rel="stylesheet" href="css/profil.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/responsif.css">
+</head>
+
+<body data-auth="tamu">
+    <div data-muat="html/header.html"></div>
+
+    <div data-muat="html/tamu.html"></div>
+
+    <main id="isi">
+        <div data-muat="html/beranda.html"></div>
+        <div data-muat="html/materi.html"></div>
+        <div data-muat="html/playground.html"></div>
+        <div data-muat="html/kuis.html"></div>
+        <div data-muat="html/tantangan.html"></div>
+        <div data-muat="html/progres.html"></div>
+        <div data-muat="html/profil.html"></div>
+    </main>
+
+    <div data-muat="html/footer.html"></div>
+
+    <div data-muat="html/akun-dialog.html"></div>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+
+    <!-- Memuat potongan HTML di folder html/, lalu semua skrip secara berurutan -->
+    <script src="js/muat.js"></script>
+</body>
+</html>

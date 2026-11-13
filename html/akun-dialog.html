@@ -1,0 +1,91 @@
+<!-- Modal masuk dan daftar -->
+<dialog id="dlg" aria-label="Akun KodeKita">
+    <div class="isi-dlg">
+        <button class="tutup" type="button" id="tutup" aria-label="Tutup">&times;</button>
+
+        <!-- Masuk -->
+        <form id="fm" novalidate>
+            <div>
+                <h2>Masuk ke KodeKita</h2>
+                <p class="sub">Lanjutkan belajar dan simpan progresmu.</p>
+            </div>
+
+            <div class="medan">
+                <label for="fm-email">Email</label>
+                <input id="fm-email" name="email" type="email" autocomplete="email"
+                       placeholder="nama@email.com" aria-describedby="fm-e-email">
+                <p class="err" id="fm-e-email"></p>
+            </div>
+
+            <div class="medan">
+                <label for="fm-sandi">Kata sandi</label>
+                <div class="sandi">
+                    <input id="fm-sandi" name="sandi" type="password" autocomplete="current-password"
+                           aria-describedby="fm-e-sandi">
+                    <button class="btn secondary tgl" type="button" data-t="fm-sandi" aria-pressed="false">Tampilkan</button>
+                </div>
+                <p class="err" id="fm-e-sandi"></p>
+            </div>
+
+            <p class="err" id="fm-e-gagal" role="alert"></p>
+
+            <button class="btn penuh" type="submit">Masuk</button>
+
+            <p class="ganti">
+                Belum punya akun?
+                <button class="tautan" type="button" data-buka="daftar">Daftar sekarang</button>
+            </p>
+        </form>
+
+        <!-- Daftar -->
+        <form id="fd" novalidate hidden>
+            <div>
+                <h2>Buat akun KodeKita</h2>
+                <p class="sub">Gratis, dan progresmu tersimpan di akun.</p>
+            </div>
+
+            <div class="medan">
+                <label for="fd-nama">Nama lengkap</label>
+                <input id="fd-nama" name="nama" autocomplete="name" aria-describedby="fd-e-nama">
+                <p class="err" id="fd-e-nama"></p>
+            </div>
+
+            <div class="medan">
+                <label for="fd-email">Email</label>
+                <input id="fd-email" name="email" type="email" autocomplete="email"
+                       placeholder="nama@email.com" aria-describedby="fd-e-email">
+                <p class="err" id="fd-e-email"></p>
+            </div>
+
+            <div class="medan">
+                <label for="fd-sandi">Kata sandi</label>
+                <div class="sandi">
+                    <input id="fd-sandi" name="sandi" type="password" autocomplete="new-password"
+                           aria-describedby="fd-bantuan fd-e-sandi">
+                    <button class="btn secondary tgl" type="button" data-t="fd-sandi" aria-pressed="false">Tampilkan</button>
+                </div>
+                <p class="bantuan" id="fd-bantuan">Minimal 8 karakter.</p>
+                <p class="err" id="fd-e-sandi"></p>
+            </div>
+
+            <div class="medan">
+                <label for="fd-ulang">Ulangi kata sandi</label>
+                <div class="sandi">
+                    <input id="fd-ulang" name="ulang" type="password" autocomplete="new-password"
+                           aria-describedby="fd-e-ulang">
+                    <button class="btn secondary tgl" type="button" data-t="fd-ulang" aria-pressed="false">Tampilkan</button>
+                </div>
+                <p class="err" id="fd-e-ulang"></p>
+            </div>
+
+            <p class="err" id="fd-e-gagal" role="alert"></p>
+
+            <button class="btn penuh" type="submit">Daftar sekarang</button>
+
+            <p class="ganti">
+                Sudah punya akun?
+                <button class="tautan" type="button" data-buka="masuk">Masuk di sini</button>
+            </p>
+        </form>
+    </div>
+</dialog>

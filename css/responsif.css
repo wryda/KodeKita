@@ -1,0 +1,136 @@
+/* KodeKita - penyesuaian tampilan HP dan tablet. Dimuat paling akhir. */
+
+html { -webkit-text-size-adjust: 100%; }
+body { overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
+pre, textarea, iframe { max-width: 100%; }
+
+/* ===== Tablet ke bawah ===== */
+
+@media (max-width: 900px) {
+    .atas { padding-bottom: 8px; }
+
+    /* Menu bisa digeser ke samping, ujung kanan memudar sebagai petunjuk */
+    .atas nav {
+        -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
+        mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
+    }
+
+    .atas nav a { padding: 9px 15px; }
+
+    .hero .poin { gap: 6px 14px; }
+}
+
+/* Materi dan Tantangan: daftar jadi deretan kartu yang bisa digeser */
+@media (max-width: 860px) {
+    .dua { gap: 16px; }
+
+    .daftar {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 8px;
+        margin: 0 -5%;
+        padding: 2px 5% 8px;
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+        scrollbar-width: none;
+    }
+
+    .daftar::-webkit-scrollbar { display: none; }
+
+    .daftar .grup {
+        flex: 0 0 auto;
+        align-self: center;
+        margin: 0 2px 0 8px;
+        white-space: nowrap;
+    }
+
+    .daftar .grup:first-child { margin-left: 0; }
+
+    .daftar button {
+        flex: 0 0 auto;
+        width: 168px;
+        scroll-snap-align: start;
+    }
+
+    .profil-container { grid-template-columns: 1fr; }
+}
+
+/* ===== HP ===== */
+
+@media (max-width: 600px) {
+    h1 { overflow-wrap: break-word; }
+
+    .atas { gap: 8px 12px; padding-left: 16px; padding-right: 16px; }
+    .logo { font-size: 22px; }
+    .atas nav { width: calc(100% + 32px); margin: 0 -16px; padding: 2px 16px; }
+
+    .tamu { width: calc(100% - 32px); margin-top: 12px; padding: 10px 14px; }
+    .tamu p { font-size: 13px; }
+
+    #isi { padding: 18px 16px 56px; }
+    .daftar { margin: 0 -16px; padding-left: 16px; padding-right: 16px; }
+
+    section[id^="v-"] > h2 + p { margin-bottom: 18px; }
+
+    /* Beranda */
+    .hero { padding: 24px 18px; border-radius: 22px; }
+    .hero h1 { font-size: clamp(28px, 8.4vw, 36px); }
+    .lead { font-size: 16px; margin-bottom: 20px; }
+
+    .hero .baris, .cta .baris { flex-direction: column; align-items: stretch; }
+    .hero .baris .btn, .cta .baris .btn { width: 100%; min-height: 46px; }
+
+    .statistik > div { padding: 16px 8px; }
+    .statistik strong { font-size: 28px; }
+
+    .bagian, .cta { margin-top: 44px; }
+    .cta { padding: 24px 18px; border-radius: 20px; }
+    .kartu, .panel { padding: 20px; }
+
+    /* Playground: huruf 16px supaya layar tidak ter-zoom saat mengetik */
+    .pg { --h: 200px; border-radius: 12px; }
+    .pg-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+    .pg-tabs::-webkit-scrollbar { display: none; }
+    .pg-tabs button { flex: 0 0 auto; min-height: 40px; }
+    .gut { flex-basis: 36px; padding: 12px 6px; font-size: 16px; line-height: 24px; }
+    .pg textarea { font-size: 16px; line-height: 24px; }
+    #pg-main { --h: 260px; }
+
+    /* Materi */
+    #isi-materi { padding: 18px 16px; }
+    pre.kode { font-size: 12.5px; }
+    .kode .l { padding-right: 12px; }
+
+    /* Form dan kuis */
+    input, textarea, select { font-size: 16px; }
+    .kotak { padding: 18px 16px; }
+    .opsi { padding: 12px 14px; min-height: 48px; }
+    .skor { font-size: 38px; }
+
+    /* Profil */
+    .profil-info { gap: 8px; }
+    .profil-info-item { padding: 10px 4px; }
+    .profil-kartu .baris { flex-direction: column; align-items: stretch; }
+    .profil-kartu .baris .btn { width: 100%; }
+
+    /* Jendela masuk/daftar */
+    dialog#dlg { width: calc(100% - 24px); max-height: 92dvh; border-radius: 18px; }
+    .isi-dlg { padding: 24px 18px 20px; }
+    .sandi .tgl { min-width: 88px; }
+    .isi-dlg .btn { min-height: 46px; }
+
+    .toast {
+        left: 12px;
+        right: 12px;
+        bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+        max-width: none;
+    }
+
+    footer { padding: 24px 16px calc(24px + env(safe-area-inset-bottom, 0px)); }
+}
+
+/* HP kecil */
+@media (max-width: 380px) {
+    .daftar button { width: 148px; }
+    .statistik strong { font-size: 24px; }
+}

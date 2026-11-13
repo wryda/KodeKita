@@ -1,0 +1,169 @@
+/* KodeKita - Materi dan Tantangan (daftar di kiri, isi di kanan). */
+
+.dua {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.daftar {
+    position: sticky;
+    top: 92px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: calc(100vh - 112px);
+    overflow-y: auto;
+    padding-right: 2px;
+}
+
+.daftar .grup {
+    margin: 14px 0 2px;
+    color: var(--utama);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+}
+
+.daftar .grup { display: flex; align-items: center; gap: 8px; }
+.daftar .grup:first-child { margin-top: 0; }
+.logo-grup { width: 20px; height: 20px; border-radius: 5px; }
+
+.daftar button {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    padding: 11px 14px;
+    border: 1px solid var(--garis);
+    border-radius: var(--radius-kecil);
+    background: var(--muka);
+    color: var(--teks);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    transition: border-color .2s, background .2s;
+}
+
+.daftar button small { color: var(--lembut); font-size: 12px; font-weight: 400; }
+.daftar button:hover { border-color: var(--utama); }
+.daftar button[aria-current="true"] { border-color: var(--utama); background: var(--dasar); box-shadow: inset 4px 0 0 var(--utama); }
+
+#isi-materi {
+    min-width: 0;
+    padding: clamp(18px, 3vw, 30px);
+    border: 1px solid var(--garis);
+    border-radius: var(--radius);
+    background: var(--muka);
+    box-shadow: var(--bayangan);
+}
+
+.kepala-materi { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.kepala-materi h3 { margin: 0; font-size: clamp(22px, 3vw, 28px); }
+.logo-materi { flex-shrink: 0; width: 44px; height: 44px; border-radius: 10px; box-shadow: 0 2px 8px rgba(20, 60, 50, .15); }
+
+figure.gambar {
+    margin: 0 0 20px;
+    overflow: hidden;
+    border: 1px solid var(--garis);
+    border-radius: 12px;
+    background: var(--dasar);
+}
+
+figure.gambar img { display: block; width: 100%; height: auto; }
+
+figure.gambar figcaption {
+    padding: 8px 14px;
+    border-top: 1px solid var(--garis);
+    background: var(--muka);
+    color: var(--lembut);
+    font-size: 12.5px;
+}
+#isi-materi p { line-height: 1.75; }
+
+.nm { margin: 18px 0 6px; color: var(--lembut); font: 700 12px var(--mono); }
+
+pre.kode {
+    margin: 0 0 18px;
+    padding: 14px 0;
+    overflow: auto;
+    border-radius: var(--radius-kecil);
+    background: #0c1916;
+    color: #d9f5e9;
+    font: 13px/1.65 var(--mono);
+    counter-reset: baris;
+}
+
+.kode .l {
+    position: relative;
+    display: block;
+    padding: 0 16px 0 54px;
+    white-space: pre;
+    counter-increment: baris;
+}
+
+.kode .l::before {
+    content: counter(baris);
+    position: absolute;
+    left: 0;
+    width: 38px;
+    color: #5f8379;
+    text-align: right;
+}
+
+pre.hasil {
+    margin: 0 0 18px;
+    padding: 14px 16px;
+    overflow: auto;
+    border: 1px solid var(--garis);
+    border-left: 4px solid var(--utama);
+    border-radius: var(--radius-kecil);
+    background: var(--dasar);
+    color: var(--teks);
+    font: 13px/1.65 var(--mono);
+}
+
+.catatan-server {
+    margin: 0 0 18px;
+    padding: 12px 14px;
+    border: 1px solid #ecd98a;
+    border-radius: var(--radius-kecil);
+    background: #fff9db;
+    color: #5f4b00;
+    font-size: 14px;
+}
+
+.video-wrap { margin-top: 26px; }
+.video-wrap h4 { margin-bottom: 10px; font-size: 17px; }
+.sumber-video { margin: 8px 0 0; color: var(--lembut); font-size: 13px; }
+.sumber-video a { color: var(--utama); font-weight: 700; text-decoration: underline; }
+
+.video {
+    margin-top: 0;
+    padding: 18px;
+    border: 1px dashed var(--garis);
+    border-radius: 12px;
+    background: var(--dasar);
+    color: var(--lembut);
+    font-size: 14px;
+}
+
+.video:has(iframe) { padding: 0; border: 0; overflow: hidden; aspect-ratio: 16 / 9; background: #0c1916; }
+.video iframe { width: 100%; height: 100%; border: 0; }
+
+/* Tantangan */
+
+#t-judul { margin-bottom: 6px; font-size: 24px; }
+#t-petunjuk { color: var(--lembut); }
+#pg-tan { margin: 16px 0; }
+#t-hasil { margin-top: 16px; }
+.pemeriksa { display: none; }
+
+@media (max-width: 860px) {
+    .dua { grid-template-columns: 1fr; }
+    .daftar { position: static; max-height: none; }
+}
+

@@ -1,0 +1,79 @@
+/* KodeKita - Modal masuk dan daftar. */
+
+dialog#dlg {
+    width: min(420px, calc(100% - 30px));
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 0;
+    border: 1px solid var(--garis);
+    border-radius: 20px;
+    background: var(--muka);
+    color: var(--teks);
+    box-shadow: 0 20px 70px rgba(0, 0, 0, .25);
+}
+
+dialog#dlg::backdrop {
+    background: rgba(5, 20, 17, .65);
+    backdrop-filter: blur(4px);
+}
+
+.isi-dlg {
+    position: relative;
+    padding: 28px 26px 24px;
+}
+
+.isi-dlg h2 {
+    margin-bottom: 4px;
+    padding-right: 36px;
+}
+
+.sub {
+    margin-bottom: 4px;
+    color: var(--lembut);
+    font-size: 14px;
+}
+
+.tutup {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--garis);
+    border-radius: 50%;
+    background: var(--dasar);
+    color: var(--teks);
+    font-size: 20px;
+    line-height: 1;
+}
+
+.tutup:hover {
+    border-color: var(--utama);
+    color: var(--utama);
+}
+
+.sandi {
+    display: flex;
+    gap: 8px;
+}
+
+.sandi input {
+    flex: 1;
+    min-width: 0;
+}
+
+.sandi .tgl {
+    flex-shrink: 0;
+    min-width: 104px;
+}
+
+.ganti {
+    margin: 2px 0 0;
+    color: var(--lembut);
+    font-size: 14px;
+    text-align: center;
+}
+
