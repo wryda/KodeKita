@@ -13,7 +13,12 @@
     const tombol = $('#tema');
 
     const tandai = () => {
-        tombol.setAttribute('aria-pressed', String(root.dataset.tema === 'gelap'));
+        const gelap = root.dataset.tema === 'gelap';
+        const aksi = gelap ? 'Ganti ke mode terang' : 'Ganti ke mode gelap';
+
+        tombol.setAttribute('aria-pressed', String(gelap));
+        tombol.setAttribute('aria-label', aksi);
+        tombol.title = aksi;
     };
 
     tombol.onclick = () => {
@@ -23,6 +28,16 @@
     };
 
     tandai();
+
+    /* Menu atas di HP: tautan halaman aktif digeser ke tengah supaya tidak terpotong */
+
+    const tengahkan = () => {
+        const a = $('.atas nav a[aria-current="page"]');
+
+        if (a) a.scrollIntoView({ inline: 'center', block: 'nearest' });
+    };
+
+    KK.onRute.push(() => setTimeout(tengahkan, 0));
 
     /* ===== Ekspor dan impor progres (di halaman Profil) ===== */
 

@@ -1,20 +1,20 @@
-/* KodeKita - Halaman Tantangan (web: dijalankan di iframe; PHP/SQL: isian atau pilihan). */
+/* KodeKita - Halaman Tantangan. */
 
 (() => {
     'use strict';
 
-    const { $, $$, el, toast, S, simpan, makePG, buildDoc } = window.KK;
+    const { $, $$, el, toast, S, simpan, makePG, buildDoc, buka } = window.KK;
     const KK = window.KK;
-    const { CH } = window.KODEKITA;
+    const { TOPIK, VIDEO, LESSONS, QUIZ, CH, HERO } = window.KODEKITA;
 
     /* ===== Tantangan ===== */
 
+    let ta = 0;
+
     const server = c => c.jenis === 'isian' || c.jenis === 'pilihan';
 
-    let no = 0;
-
     const kodeT = CH.map(c => server(c) ? null : { ...c.mulai });
-    const jwb = {};                       /* jawaban sementara: id -> teks atau nomor pilihan */
+    const jwb = {};
 
     const pgT = makePG($('#pg-tan'), {
         code: CH[0].mulai,
@@ -33,29 +33,34 @@
             const b = el('button', '', c.judul);
 
             b.type = 'button';
-            b.setAttribute('aria-current', String(i === no));
+            b.setAttribute('aria-current', String(i === ta));
 
             if (S.user) {
                 b.append(
-                    el('small', '', S.prog.tantangan[c.id] ? 'Selesai' : 'Belum selesai')
+                    el(
+                        'small',
+                        '',
+                        S.prog.tantangan[c.id] ? 'Selesai' : 'Belum selesai'
+                    )
                 );
             }
 
             b.onclick = () => {
-                if (!server(CH[no])) kodeT[no] = pgT.get();
+                if (!server(CH[ta])) kodeT[ta] = pgT.get();
 
-                no = i;
+                ta = i;
 
                 if (!server(CH[i])) pgT.set(kodeT[i]);
 
                 $('#t-hasil').replaceChildren();
+
                 renderTantangan();
             };
 
             d.append(b);
         });
 
-        const c = CH[no];
+        const c = CH[ta];
 
         $('#t-judul').textContent = c.judul;
         $('#t-petunjuk').innerHTML = c.pet;
@@ -154,7 +159,7 @@
                     '',
                     r.length && r[0][0].startsWith('Kode selesai')
                         ? 'Kodemu tidak selesai dijalankan. Cari perulangan tanpa akhir.'
-                        : 'Baca bagian yang bertanda Belum, lalu coba lagi.'
+                        : 'Baca bagian yang bertanda Belum, perbaiki kodenya, lalu periksa lagi.'
                 )
             );
         }
@@ -180,7 +185,7 @@
     }
 
     $('#periksa').onclick = () => {
-        const c = CH[no];
+        const c = CH[ta];
 
         if (server(c)) {
             periksaServer(c);
@@ -206,7 +211,11 @@
         };
 
         const on = e => {
-            if (e.source === fr.contentWindow && e.data && e.data.kk) {
+            if (
+                e.source === fr.contentWindow &&
+                e.data &&
+                e.data.kk
+            ) {
                 akhir(e.data.r);
             }
         };

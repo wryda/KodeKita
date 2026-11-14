@@ -64,3 +64,61 @@
 }
 
 [data-tema="gelap"] .btn.secondary { color: var(--teks); }
+
+/* ===== Tombol tema (ikon) ===== */
+
+.ikon-tema {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    margin-left: auto;
+    padding: 0;
+    border: 2px solid var(--garis);
+    border-radius: 50%;
+    background: var(--dasar);
+    color: var(--dukung);
+    transition: border-color .2s, transform .2s;
+}
+
+.ikon-tema:hover { border-color: var(--utama); transform: scale(1.05); }
+.ikon-tema svg { width: 22px; height: 22px; }
+.ikon-tema .i-matahari { display: none; }
+
+.atas .akun { margin-left: 0; }
+
+[data-tema="gelap"] .ikon-tema .i-bulan { display: none; }
+[data-tema="gelap"] .ikon-tema .i-matahari { display: block; }
+[data-tema="gelap"] .ikon-tema,
+[data-tema="gelap"] .ikon-profil { color: var(--teks); }
+
+/* ===== Perapian tampilan HP ===== */
+
+.daftar { scroll-padding-inline: 16px; }
+.opsi-kuis { margin-top: 14px; }
+
+@media (max-width: 600px) {
+    /* Baris pertama header: logo, ikon tema, tombol akun, semuanya muat satu baris */
+    .atas { flex-wrap: wrap; gap: 8px 10px; }
+    .atas .akun { gap: 6px; }
+    .atas .akun .btn { min-height: 40px; padding: 8px 14px; }
+    .ikon-tema, .ikon-profil { width: 40px; height: 40px; }
+
+    /* Tombol Reset di tab playground tetap terlihat saat tab digeser */
+    .pg-tabs button { padding: 8px 10px; }
+    .pg-tabs .reset { position: sticky; right: 0; background: #08130f; }
+
+    .tan-isian { min-height: 160px; font-size: 16px; }
+    .hasil { overflow-wrap: anywhere; }
+}
+
+/* Layar sangat sempit: Daftar disembunyikan (tetap ada di banner "Kamu belum masuk") */
+@media (max-width: 340px) {
+    .atas .akun .btn.u { display: none; }
+}
+
+[data-tema="gelap"] .label-hero {
+    background: rgba(47, 196, 176, .16);
+    color: #7be0cf;
+}
