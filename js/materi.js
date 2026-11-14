@@ -259,6 +259,13 @@
         }
     }
 
+    KK.bukaBab = id => {
+        stopSuara();
+        topik = id;
+        location.hash = 'materi';
+        renderMateri();
+    };
+
     KK.render.push(renderMateri);
     KK.onRute.push(renderMateri);
     KK.stopSuara = stopSuara;

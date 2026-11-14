@@ -164,6 +164,21 @@
         if (!v) return;
 
         const email = v.email.trim().toLowerCase();
+
+        if (KK.server && KK.server.aktif) {
+            const r = await KK.server.daftar(v.nama.trim(), email, v.sandi);
+
+            if (r.galat) {
+                err(fd, 'email', r.galat);
+                return;
+            }
+
+            dlg.close();
+            setUser(email);
+            toast('Akun dibuat. Selamat belajar, ' + r.nama.split(' ')[0] + '!');
+            return;
+        }
+
         const a = akun();
 
         if (a[email]) {
@@ -210,6 +225,21 @@
         if (!v) return;
 
         const email = v.email.trim().toLowerCase();
+
+        if (KK.server && KK.server.aktif) {
+            const r = await KK.server.masuk(email, v.sandi);
+
+            if (r.galat) {
+                err(fm, 'sandi', r.galat);
+                return;
+            }
+
+            dlg.close();
+            setUser(email);
+            toast('Selamat datang kembali, ' + r.nama.split(' ')[0] + '.');
+            return;
+        }
+
         const a = akun()[email];
 
         if (!a) {

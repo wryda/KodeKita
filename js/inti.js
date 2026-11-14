@@ -137,6 +137,8 @@
             );
         }
 
+        if (KK.server && KK.server.kirim) KK.server.kirim();
+
         renderSemua();
     }
 

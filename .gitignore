@@ -1,0 +1,15 @@
+# Data server (akun siswa dan kunci rahasia, jangan diunggah)
+server/data/
+
+# Sistem operasi
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Lain-lain
+node_modules/
+*.log
+.env

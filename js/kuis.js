@@ -9,13 +9,35 @@
 
     /* ===== Kuis ===== */
 
-    let q = {
+    const acak = a => {
+        a = [...a];
+
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+
+        return a;
+    };
+
+    /* Urutan soal dan urutan pilihan diacak setiap kali kuis dimulai */
+
+    const siapkan = () => acak(QUIZ.map(x => {
+        const urut = acak(x.o.map((_, i) => i));
+
+        return { ...x, o: urut.map(i => x.o[i]), a: urut.indexOf(x.a) };
+    }));
+
+    const baru = () => ({
         i: 0,
         skor: 0,
         jaw: [],
         pilih: null,
-        selesai: false
-    };
+        selesai: false,
+        soal: siapkan()
+    });
+
+    let q = baru();
 
     function renderKuis() {
         const b = $('#kuis-isi');
@@ -26,7 +48,7 @@
         $('#info-kuis').textContent =
             S.user && S.prog.kuis.terbaik != null
                 ? 'Skor terbaikmu: ' + S.prog.kuis.terbaik + ' dari ' + total + '.'
-                : total + ' soal dari tiga topik. Setiap jawaban langsung dibahas.';
+                : total + ' soal dari lima topik, urutannya diacak. Setiap jawaban langsung dibahas.';
 
         const bar = nilai => {
             const t = el('div', 'progress');
@@ -39,7 +61,7 @@
         };
 
         const ulangi = () => {
-            q = { i: 0, skor: 0, jaw: [], pilih: null, selesai: false };
+            q = baru();
             renderKuis();
         };
 
@@ -71,7 +93,7 @@
 
             const ul = el('ul', 'hasil');
 
-            QUIZ.forEach((x, n) => {
+            q.soal.forEach((x, n) => {
                 const ok = q.jaw[n] === x.a;
                 const li = el('li', ok ? 'ok' : 'no');
                 const isi = el('span');
@@ -90,6 +112,16 @@
                     )
                 );
 
+                if (!ok && x.bab) {
+                    const L = LESSONS.find(l => l.id === x.bab);
+                    const t = el('button', 'tautan', 'Baca lagi: ' + (L ? L.judul : x.bab));
+
+                    t.type = 'button';
+                    t.onclick = () => KK.bukaBab(x.bab);
+
+                    isi.append(t);
+                }
+
                 li.append(isi);
                 ul.append(li);
             });
@@ -107,7 +139,7 @@
 
         /* ----- Soal ----- */
 
-        const Q = QUIZ[q.i];
+        const Q = q.soal[q.i];
 
         const atas = el('div', 'kuis-atas');
         atas.append(

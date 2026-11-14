@@ -6,6 +6,7 @@
 
     const SKRIP = [
         'js/data.js',
+        'js/data-tambahan.js',
         'js/inti.js',
         'js/akun.js',
         'js/playground.js',
@@ -15,6 +16,8 @@
         'js/tantangan.js',
         'js/progres.js',
         'js/profil.js',
+        'js/tambahan.js',
+        'js/sinkron.js',
         'js/router.js'
     ];
 

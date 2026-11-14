@@ -1,0 +1,66 @@
+/* KodeKita - Tambahan: tantangan isian/pilihan, cadangan progres, mode gelap. */
+
+.tan-isian {
+    min-height: 140px;
+    font-family: var(--mono);
+    font-size: 14px;
+    line-height: 1.6;
+    resize: vertical;
+}
+
+.tan-server { margin-top: 12px; }
+
+.kode-kecil {
+    margin: 10px 0;
+    padding: 12px 14px;
+    overflow-x: auto;
+    border-radius: var(--radius-kecil);
+    background: var(--dasar);
+    font-family: var(--mono);
+    font-size: 13px;
+}
+
+.opsi[aria-pressed="true"] {
+    border-color: var(--utama);
+    box-shadow: 0 0 0 2px var(--utama) inset;
+}
+
+.hasil .tautan { display: block; margin-top: 4px; }
+
+#profil-cadangan { margin-top: 20px; }
+
+/* ===== Mode gelap ===== */
+
+:root[data-tema="gelap"] {
+    color-scheme: dark;
+
+    --dasar: #0e1917;
+    --muka: #15241f;
+    --teks: #e3efec;
+    --lembut: #9bb4ad;
+    --utama: #14907f;
+    --utama-hover: #0f7a6b;
+    --dukung: #0b3a33;
+    --garis: #27403a;
+    --bayangan: 0 8px 28px rgba(0, 0, 0, .35);
+}
+
+[data-tema="gelap"] .atas { background: rgba(14, 25, 23, .92); }
+
+[data-tema="gelap"] .kartu .tag {
+    background: color-mix(in srgb, var(--aksen) 22%, var(--muka));
+}
+
+[data-tema="gelap"] .hero-video::after {
+    background:
+        linear-gradient(90deg, rgba(14, 25, 23, .95) 0%, rgba(14, 25, 23, .86) 50%, rgba(14, 25, 23, .55) 100%),
+        radial-gradient(520px 300px at 100% 0%, rgba(245, 220, 85, .12), transparent 65%);
+}
+
+[data-tema="gelap"] .catatan-server {
+    border-color: #6b5a1c;
+    background: #2a2410;
+    color: #f0dc8a;
+}
+
+[data-tema="gelap"] .btn.secondary { color: var(--teks); }

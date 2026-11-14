@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KodeKita – Nilai Siswa</title>
+    <style>
+        body { font: 16px/1.5 system-ui, sans-serif; max-width: 860px; margin: 32px auto; padding: 0 16px; color: #183b35; }
+        form { display: grid; gap: 10px; max-width: 320px; }
+        input, button { padding: 10px; font: inherit; }
+        button { background: #087f70; color: #fff; border: 0; border-radius: 8px; cursor: pointer; }
+        table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+        th, td { padding: 8px 10px; border-bottom: 1px solid #d8e6e1; text-align: left; }
+        .galat { color: #b42318; }
+    </style>
+</head>
+<body>
+    <h1>Nilai siswa KodeKita</h1>
+    <form id="f">
+        <label>Email guru <input name="email" type="email" required autocomplete="email"></label>
+        <label>Kata sandi <input name="sandi" type="password" required autocomplete="current-password"></label>
+        <button>Masuk</button>
+        <p class="galat" id="g" role="alert"></p>
+    </form>
+    <div id="hasil" hidden>
+        <button id="csv" type="button">Unduh CSV</button>
+        <table>
+            <thead><tr><th>Nama</th><th>Email</th><th>Materi</th><th>Kuis terbaik</th><th>Tantangan</th></tr></thead>
+            <tbody id="isi"></tbody>
+        </table>
+    </div>
+
+    <script>
+        const $ = s => document.querySelector(s);
+        let data;
+
+        $('#f').onsubmit = async e => {
+            e.preventDefault();
+            $('#g').textContent = '';
+
+            const f = new FormData(e.target);
+            const post = await fetch('/api/masuk', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: f.get('email'), sandi: f.get('sandi') })
+            });
+            const m = await post.json();
+
+            if (!post.ok) { $('#g').textContent = m.galat; return; }
+
+            const res = await fetch('/api/nilai', { headers: { Authorization: 'Bearer ' + m.token } });
+            data = await res.json();
+
+            if (!res.ok) { $('#g').textContent = data.galat; return; }
+
+            const t = data.total;
+            $('#isi').replaceChildren(...data.siswa.map(s => {
+                const tr = document.createElement('tr');
+                [s.nama, s.email,
+                 s.materi + '/' + t.bab,
+                 s.kuisTerbaik == null ? '-' : s.kuisTerbaik + '/' + t.soal,
+                 s.tantangan + '/' + t.tantangan
+                ].forEach(v => { const td = document.createElement('td'); td.textContent = v; tr.append(td); });
+                return tr;
+            }));
+
+            e.target.hidden = true;
+            $('#hasil').hidden = false;
+        };
+
+        $('#csv').onclick = () => {
+            const t = data.total;
+            const q = v => '"' + String(v).replace(/"/g, '""').replace(/^([=+\-@])/, "'$1") + '"';
+            const baris = [['Nama', 'Email', 'Materi', 'Kuis terbaik', 'Tantangan'].map(q).join(',')]
+                .concat(data.siswa.map(s => [s.nama, s.email, s.materi + '/' + t.bab,
+                    s.kuisTerbaik == null ? '' : s.kuisTerbaik + '/' + t.soal, s.tantangan + '/' + t.tantangan].map(q).join(',')));
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(new Blob([baris.join('\n')], { type: 'text/csv' }));
+            a.download = 'nilai-kodekita.csv';
+            a.click();
+        };
+    </script>
+</body>
+</html>
